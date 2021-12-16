@@ -10,13 +10,14 @@
     
     <script>
         var connected = false;
-        
+        var uid = Math.floor(Math.random() * 2000000);
+
         document.getElementById("outputscreen").innerHTML = "script loaded";
         
         var runsocket = new WebSocket('wss://free3.piesocket.com/v3/5?api_key=gVXibQX3KJrDqLpTOXK0qRLfwkhClWN9Dt6h0SbS');
         function sendmsg(){
             
-            runsocket.send('testping ran');
+            runsocket.send('user'+uid+": says, Hello);
             
             
         }
@@ -36,8 +37,8 @@ alert("socket error");
 
 function pingsender(){
     
- runsocket.send('cmd_ping')
- 
+runsocket.send('user'+uid+": connected");
+
     
 }
         //wss://free3.piesocket.com/v3/1?api_key=gVXibQX3KJrDqLpTOXK0qRLfwkhClWN9Dt6h0SbS&notify_self
