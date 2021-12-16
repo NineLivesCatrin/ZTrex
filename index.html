@@ -1,10 +1,48 @@
+
 <body>
-Hello world!
+    
+    <div id = "outputscreen">
+        
+        
+    </div>
+    
+    <div id = "sendbutton" style = "width: 20%;height: 20%;background-color: cyan" onclick = "sendmsg()"> send a ping to the server</div>
+    
+    <script>
+        var connected = false;
+        
+        document.getElementById("outputscreen").innerHTML = "script loaded";
+        
+        var runsocket = new WebSocket('wss://free3.piesocket.com/v3/5?api_key=gVXibQX3KJrDqLpTOXK0qRLfwkhClWN9Dt6h0SbS');
+        function sendmsg(){
+            
+            runsocket.send('testping ran');
+            
+            
+        }
+        
+        runsocket.onmessage = function (event) {
+     connected = true;
+    document.getElementById("outputscreen").innerHTML = document.getElementById("outputscreen").innerHTML + event.data;
+    
+}
 
-<script>
+runsocket.onerror = function(event){
 
-alert("scripts loaded")
-</script>
+alert("socket error");
 
 
-</body>
+}
+
+function pingsender(){
+    
+ runsocket.send('cmd_ping')
+ 
+    
+}
+        //wss://free3.piesocket.com/v3/1?api_key=gVXibQX3KJrDqLpTOXK0qRLfwkhClWN9Dt6h0SbS&notify_self
+        
+        setTimeout( pingsender, 1000);
+        
+    </script>
+    
